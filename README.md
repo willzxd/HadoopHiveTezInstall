@@ -207,7 +207,7 @@ flush privileges;
 Restart MySQL:
     $ /etc/init.d/mysql restart
 
-##Installation of Hive
+##<a name="5"/>Installation of Hive
 
 You can follow the official instruction [here](https://cwiki.apache.org/confluence/display/Hive/GettingStarted).
 
@@ -276,7 +276,7 @@ To use the [Hiveserver2](https://cwiki.apache.org/confluence/display/Hive/Settin
 
     $HIVE_HOME/bin/hive --service hiveserver2 2>&1 &
 
-##Tez installation
+##<a name="6"/>Tez installation
 You can follow the official instruction [here](http://tez.apache.org/install.html).
 Tez need Protocol Buffers 2.5.0 or later and Maven 3 or later.
 
@@ -352,7 +352,7 @@ $ bin/hdfs dfs ­copyFromLocal $TEZ_INSTALL_DIR/lib/* /apps/tez­-0.7.0/lib
 ```
 Tez has been successfully installed.
 
-## An example of bashrc file
+##<a name="9"/> An example of bashrc file
 ```
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
@@ -384,7 +384,7 @@ export HIVE_AUX_JARS_PATH="${TEZ_JARS}"
 export HADOOP_CLASSPATH="${TEZ_CONF_DIR}:${TEZ_JARS}:${HADOOP_CLASSPATH}"
 ```
 
-##Using BigFrame
+##<a name="7"/>Using BigFrame
 
 [BigFrame 'thoth'](https://github.com/bigframeteam/BigFrame/tree/thoth) is a benchmark generator, which captures your requirement by the 3V's, namely, Volume, Variety and Velocity emphasized in the Big Data environment. Given the benchmark specification you provided, it will generate
 * The set of data for initial load (with data loading utility)
@@ -518,7 +518,7 @@ After the data generation finish, you can then run the benchmark queries by this
 
 It will prepare a set of queries based on your benchmark specification, and then run the queries on the system you specified.
 
-### Compare pure hive-mr and pure hive-tez using BigFrame: A simple example
+##<a name="8"/> Compare pure hive-mr and pure hive-tez using BigFrame: A simple example
 
 If you follow the previous instruction, you can use the default configuration of BigFrame to do the experiment. The only thing you need to do is to change the engine twice and run it twice.
 
