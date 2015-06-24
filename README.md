@@ -1,13 +1,23 @@
-# Using BigFrame to compare the performance of Hive-MR and hive-Tez
+# Using BigFrame to compare the performance of Hive-MR and Hive-Tez
 
-Installation of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + MySQL + BigFrame + Datahooks
+Tutorial of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + MySQL + BigFrame + Datahooks
 
-## What are include in this repository
+- [About this repository](#1)
+- [System Prequisite](#2)
+- [Installation of Hadoop 2.6.0](#3)
+- [Installation of MySQL](#4)
+- [Installation of Hive 1.2.0](#5)
+- [Installation of Tez 0.7.0](#6)
+- [Using BigFrame](#7)
+- [An example of Comparing the Performance of Hive-MR and Hive-Tez](#8)
+- [An example of bashrc file](#9)
+
+## <a name="1"/>What are include in this repository
 
 - Hive 1.2.0 (complied)
 - Tez 0.7.0 (complied)
 
-## System preparation
+## <a name="2"/>System Prequisite
 The tutorial is based on Ubuntu 14.04LTS 64-bit version.
 - Add a new administrator user named hadoop.
 ```
@@ -21,7 +31,7 @@ $ sudo adduser hadoop sudo
 - Install Maven 3 or later
 - Install Protocol Buffers 2.5.0 or later
 
-##Installation of Hadoop 2.6.0
+##<a name="3"/>Installation of Hadoop 2.6.0
 
 In this part I will introduce how to set up a single node cluster in the pseudo-Distributed mode.
 You can also refer the official instrucion [here](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html).
@@ -167,7 +177,7 @@ use jps command to check everything is running. You should have a list like this
     $ bin/hdfs dfs -get output output
     $ cat output/*
 
-##Installation of MySQL
+##<a name="4"/>Installation of MySQL
 
 use the following command:
 
