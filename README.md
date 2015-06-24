@@ -494,6 +494,9 @@ export TEZ_JARS=$(echo "$TEZ_INSTALL_DIR"/*.jar | tr ' ' ':'):$(echo "$TEZ_INSTA
 export HIVE_AUX_JARS_PATH="${TEZ_JARS}"
 
 export HADOOP_CLASSPATH="${TEZ_CONF_DIR}:${TEZ_JARS}:${HADOOP_CLASSPATH}"
+
+# Tomact
+export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
 ```
 
 ##<a name="7"/>Using BigFrame
