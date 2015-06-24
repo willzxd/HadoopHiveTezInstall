@@ -507,7 +507,5 @@ After the data generation finish, you can then run the benchmark queries by this
 It will prepare a set of queries based on your benchmark specification, and then run the queries on the system you specified.
 
 ### Compare pure hive-mr and pure hive-tez using BigFrame: A simple example
-I generate 10GB data combined with the realtional data, graph data and nested data
-5.53072 min
-5.70933 min
-5.82627 min
+
+I generate 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
