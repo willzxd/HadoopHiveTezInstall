@@ -8,6 +8,7 @@ Tutorial of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + MySQL + BigFrame + Datahooks
 - [Installation of MySQL](#4)
 - [Installation of Hive 1.2.0](#5)
 - [Installation of Tez 0.7.0](#6)
+- [Installation of Tez UI 0.7.0](#10)
 - [Using BigFrame](#7)
 - [An example of Comparing the Performance of Hive-MR and Hive-Tez](#8)
 - [An example of bashrc file](#9)
@@ -352,6 +353,117 @@ $ bin/hdfs dfs ­copyFromLocal $TEZ_INSTALL_DIR/lib/* /apps/tez­-0.7.0/lib
 ```
 Tez has been successfully installed.
 
+##<a name = "10"/>Installation of Tez UI
+I deploy Tez UI web application by Tomcat. There are also alternative ways to deploy it.
+The official setup instruction of Tomcat is [here](http://tomcat.apache.org/tomcat-8.0-doc/setup.html#Unix_daemon).
+The official setup instruction of Tez UI is [here](http://tez.apache.org/tez-ui.html).
+
+## Download Tomcat 8.0.23
+You can download the Tomcat on [its official website](http://tomcat.apache.org/download-80.cgi).
+
+
+## Configuration fo Tomcat
+Explode the tarball in the proper directory. I put it under `/usr/local/apache-tomcat-8.0.23`.
+
+Add the following line to bashrc file:
+```
+# Tomact
+export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
+```
+
+Add the following line to `bin/startup.sh`:
+```
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
+```
+Add user of Tomcat to `$CATALINA_HOME/conf/tomcat-user.xml:
+```
+<role rolename="tomcat"/>
+<user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-jmx,manager-status"/>
+```
+Add the following lines to `$TEZ_HOME/conf/tez-site.xml`:
+```
+<property>
+  <description>Log history using the Timeline Server</description>
+  <name>tez.history.logging.service.class</name>
+  <value>org.apache.tez.dag.history.logging.ats.ATSHistoryLoggingService</value>
+</property>
+<property>
+  <description>Publish configuration information to Timeline server.</description>
+  <name>tez.runtime.convert.user-payload.to.history-text</name>
+  <value>true</value>
+</property>
+```
+Add the following configuration to `$HADOOP_HOME/etc/hadoop/yarn-site.xml`:
+```
+<property>
+  <description>
+  The hostname of the Timeline service web application.
+  </description>
+  <name>yarn.timeline-service.hostname</name>
+  <value>localhost</value>
+</property>
+
+<property>
+  <description>
+    The setting that controls whether yarn system metrics is
+  published on the timeline server or not by RM.
+  </description>
+  <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>
+  Indicate to clients whether to query generic application
+  data from timeline history-service or not. If not enabled then application
+  data is queried only from Resource Manager.
+  </description>
+  <name>yarn.timeline-service.generic-application-history.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>
+  Enables cross-origin support (CORS) for web services where
+  cross-origin web response headers are needed. For example, javascript making
+  a web services request to the timeline server.</description>
+  <name>yarn.timeline-service.http-cross-origin.enabled</name>
+  <value>true</value>
+</property>
+<property>
+  <description>
+  Store file name for leveldb timeline store. Defaults to ${hadoop.tmp.dir}/yarn/timeline. 
+  </description>
+  <name>yarn.timeline-service.leveldb-timeline-store.path</name>
+  <value>/usr/local/hadoop-2.6.0/tmp/yarn/timeline</value>
+</property>
+```
+
+###Depoly Tez UI
+
+The build of Tez generates a war file of the distribution in the tez-ui/target. Copy the war to `$CATALINA_HOME/webapps`.
+
+Start yarn timeline server:
+```
+$ $HADOOP_PREFIX/sbin/yarn-daemon.sh start timelineserver
+```
+Start Tomact:
+```
+$ sudo $CATALINA_HOME/bin/startup.sh
+```
+### View the web application
+You can browse the web page with the address:
+```
+http://localhost:8080/tez-ui-0.7.0/
+```
+You can manage Tomact from:
+```
+http://localhost:8080/
+```
+
 ##<a name="9"/> An example of bashrc file
 ```
 # Java
@@ -522,4 +634,17 @@ It will prepare a set of queries based on your benchmark specification, and then
 
 If you follow the previous instruction, you can use the default configuration of BigFrame to do the experiment. The only thing you need to do is to change the engine twice and run it twice.
 
-My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
+My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2.5 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
+
+Modify hive-site.xml in $HIVE_HOME/conf:
+```
+<property>
+    <name>hive.vectorized.execution.enabled</name>
+    <value>true</value>
+    <description>
+      This flag should be set to true to enable vectorized mode of query execution.
+      The default value is false.
+    </description>
+ </property>
+ ```
+ The result will become around 5.3 min. 
