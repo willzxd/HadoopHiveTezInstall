@@ -1,6 +1,6 @@
 # Using BigFrame to compare the performance of Hive-MR and Hive-Tez
 
-Tutorial of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + MySQL + BigFrame + Datahooks
+Tutorial of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + Tomact 8.0 + Tez UI 0.7.0 + MySQL + BigFrame + Datahooks
 
 - [About this repository](#1)
 - [System Prequisite](#2)
@@ -371,14 +371,14 @@ Add the following line to bashrc file:
 export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
 ```
 
-Add the following line to `bin/startup.sh`:
+Add the following line to `$CATALINA_HOME/bin/startup.sh`:
 ```
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
 ```
-Add user of Tomcat to `$CATALINA_HOME/conf/tomcat-user.xml:
+Add user of Tomcat to `$CATALINA_HOME/conf/tomcat-user.xml`:
 ```
 <role rolename="tomcat"/>
 <user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-jmx,manager-status"/>
