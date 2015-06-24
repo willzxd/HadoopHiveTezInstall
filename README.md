@@ -376,7 +376,7 @@ export HADOOP_CLASSPATH="${TEZ_CONF_DIR}:${TEZ_JARS}:${HADOOP_CLASSPATH}"
 
 ##Using BigFrame
 
-BigFrame 'thoth' is a benchmark generator, which captures your requirement by the 3V's, namely, Volume, Variety and Velocity emphasized in the Big Data environment. Given the benchmark specification you provided, it will generate
+[BigFrame 'thoth'](https://github.com/bigframeteam/BigFrame/tree/thoth) is a benchmark generator, which captures your requirement by the 3V's, namely, Volume, Variety and Velocity emphasized in the Big Data environment. Given the benchmark specification you provided, it will generate
 * The set of data for initial load (with data loading utility)
 * The refresh pattern for each data set (with refresh driver)
 * The query stream (with query implementation and driver to run on different systems)
@@ -503,10 +503,13 @@ bin/hdfs dfs ­copyFromLocal $BIGFRAME_HOME/graph_data /user/hadoop/graph_data
 
 After the data generation finish, you can then run the benchmark queries by this command
 
+	$HIVE_HOME/bin/hive --service hiveserver2 2>&1 &
     /bin/qgen -mode runqueries
 
 It will prepare a set of queries based on your benchmark specification, and then run the queries on the system you specified.
 
 ### Compare pure hive-mr and pure hive-tez using BigFrame: A simple example
 
-I generate 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
+If you follow the previous instruction, you can use the default configuration of BigFrame to do the experiment. The only thing you need to do is to change the engine twice and run it twice.
+
+My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
