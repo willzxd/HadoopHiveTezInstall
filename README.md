@@ -14,13 +14,13 @@ The tutorial is based on Ubuntu 14.04LTS 64-bit version.
 ##Installation of Hadoop 2.6.0
 
 In this part I will introduce how to set up a single node cluster in the pseudo-Distributed mode.
-You can also refer the official instrucion here: http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html
+You can also refer the official instrucion [here](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html)
 
 ###Download
 
-Download Hadoop 2.6.0 from the official website. http://apache.mirrors.pair.com/hadoop/common/hadoop-2.6.0/
-If you use a 64-bit OS, please download the source code tarball. Follow the instruction here to complie it. https://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-common/NativeLibraries.html
-You can find your newly-built Hadoop here: `$ hadoop-dist/taget/hadoop-2.6.0
+Download Hadoop 2.6.0 from [the official website](http://apache.mirrors.pair.com/hadoop/common/hadoop-2.6.0/). 
+If you use a 64-bit OS, please download the source code tarball. Follow the instruction [here](https://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-common/NativeLibraries.html) to complie it. 
+You can find your newly-built Hadoop here: `$ hadoop-dist/taget/hadoop-2.6.0`
 
 Following instruction here to set up your Hadoop. 
 
