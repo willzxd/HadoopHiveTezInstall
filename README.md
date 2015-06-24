@@ -331,14 +331,14 @@ Create tez-site.xml and Add the following contents:
 </configuration>
 ```
 ###Copy the library to HDFS
-​
+​```
 	$ bin/hdfs dfs ­mkdir ­p /apps/tez­-0.7.0
 	$ bin/hdfs dfs ­chmod g+w /apps/tez­-0.7.0
 	$ bin/hdfs dfs ­mkdir ­p /apps/tez­-0.7.0/lib
 	$ bin/hdfs dfs ­chmod g+w /apps/tez­-0.7.0/lib
 	$ bin/hdfs dfs ­copyFromLocal $TEZ_INSTALL_DIR/* /apps/tez­-0.7.0
 	$ bin/hdfs dfs ­copyFromLocal $TEZ_INSTALL_DIR/lib/* /apps/tez­-0.7.0/lib
-
+```
 Tez has been successfully installed.
 
 ## An example of bashrc file
