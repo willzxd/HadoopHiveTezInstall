@@ -632,6 +632,9 @@ After the data generation finish, you can then run the benchmark queries by this
     /bin/qgen -mode runqueries
 
 It will prepare a set of queries based on your benchmark specification, and then run the queries on the system you specified.
+The following image shows the Hive engine driver is running.
+![Image of hive-mr running](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/hiveMrRun.png)
+You will see the INFO indicates that queries have finished.
 
 ##<a name="8"/> Compare pure hive-mr and pure hive-tez using BigFrame: A simple example
 
