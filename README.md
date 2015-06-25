@@ -639,9 +639,9 @@ If you follow the previous instruction, you can use the default configuration of
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/mysqlResult.png)
 
-My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks 65.2135min to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
+My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. For Hive on Tez, I ran for three times. The first three results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
 
-Modify hive-site.xml in $HIVE_HOME/conf:
+Modify hive-site.xml in `$HIVE_HOME/conf` to enable the vectorization :
 ```
 <property>
     <name>hive.vectorized.execution.enabled</name>
@@ -652,6 +652,8 @@ Modify hive-site.xml in $HIVE_HOME/conf:
     </description>
  </property>
  ```
- The result will become around 5.3 min. 
+ This results are 5.3 min and 5.5 min, which are a bit better. If we use a truely distributed cluster, the results should be more obvious.
+
+ When use MapReduce framework, it will take a much longer time. The 6th record in the picture shows the result. It tooks 65.2135min to run all the queries under hive-mr mode. 
 
 
