@@ -15,8 +15,8 @@ Tutorial of Hadoop 2.6.0 + Hive 1.2.0 + Tez 0.7.0 + Tomact 8.0 + Tez UI 0.7.0 + 
 
 ## <a name="1"/>What are include in this repository
 
-- Hive 1.2.0 (complied)
-- Tez 0.7.0 (complied)
+- Hive 1.2.0 (built)
+- Tez 0.7.0 (built)
 
 ## <a name="2"/>System Prequisite
 The tutorial is based on Ubuntu 14.04LTS 64-bit version.
