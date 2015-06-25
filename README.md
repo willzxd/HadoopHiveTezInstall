@@ -637,7 +637,7 @@ It will prepare a set of queries based on your benchmark specification, and then
 
 If you follow the previous instruction, you can use the default configuration of BigFrame to do the experiment. The only thing you need to do is to change the engine twice and run it twice.
 
-My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks me more than 2.5 hours to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
+My computer has 8GB memory with Intel Core i7-2600 3.40GHz CPU. I generated 10GB data combined with the realtional data, graph data and nested data. I only use a single node cluster in the pseudo-Distributed mode. It tooks 65.2135min to run all the queries under hive-mr mode. For Hive on Tez, I ran for three times. The results are 5.53072 min, 5.70933 min and 5.82627 min. It costs less than 6 minutes on average to finish all the queries. 
 
 Modify hive-site.xml in $HIVE_HOME/conf:
 ```
