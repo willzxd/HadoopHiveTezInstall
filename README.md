@@ -230,7 +230,7 @@ Add the following lines to the bashrc file:
 	export HIVE_CONF_DIR=$HIVE_HOME/conf
 	export PATH=$PATH:$HIVE_HOME/bin 
 
-Hive by default gets its configuration from $HIVE_HOME/conf/hive-default.xml. Copy hive-default.xml and rename it as hive-site.xml. Modify hive-site.xml for using MySQL as metastore:
+Hive by default gets its configuration from `$HIVE_HOME/conf/hive-default.xml`. Copy `hive-default.xml` and rename it as `hive-site.xml`. Modify `hive-site.xml` for using MySQL as metastore:
 ```
 <property>
 	<name>javax.jdo.option.ConnectionURL</name>
@@ -256,13 +256,13 @@ Hive by default gets its configuration from $HIVE_HOME/conf/hive-default.xml. Co
 ```
 Also you need to setup localscratch dir, downloaded dir etc, which are the values that conatain "${system:java.io.tmpdir}".
 
-[Download](http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz) MySQL JDBC Drvier and copy it to the $HIVE_HOME/lib. 
+[Download](http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz) MySQL JDBC Drvier and copy it to the `$HIVE_HOME/lib`. 
 
-Remove jline-0.9.94.jar under $HADOOP_HOME directory , or replace with jline-2.12.jar under $HIVE_HOME/lib directory
+Remove `jline-0.9.94.jar` under `$HADOOP_HOME` directory , or replace with jline-2.12.jar under `$HIVE_HOME/lib` directory.
 
 ###Running Hive
 
-you must create /tmp and /user/hive/warehouse (aka hive.metastore.warehouse.dir) and set them chmod g+w in HDFS before you can create a table in Hive. Commands to perform this setup:
+you must create `/tmp` and `/user/hive/warehouse` (aka hive.metastore.warehouse.dir) and set them chmod g+w in HDFS before you can create a table in Hive. Commands to perform this setup:
 
     $ $HADOOP_HOME/bin/hadoop fs -mkdir       /tmp
     $ $HADOOP_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
