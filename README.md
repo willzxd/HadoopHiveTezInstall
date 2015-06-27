@@ -282,11 +282,11 @@ To use the [Hiveserver2](https://cwiki.apache.org/confluence/display/Hive/Settin
 
 ##<a name="6"/>Tez installation
 You can follow the official instruction [here](http://tez.apache.org/install.html).
-Tez need Protocol Buffers 2.5.0 or later and Maven 3 or later.
+Tez need Protocol Buffers 2.5.0 and Maven 3 or later.
 
 ###Installation of Protocol Buffers 2.5.0
 
-Download protocol buffer. Protocol buffer libs can be downloaded [here](https://developers.google.com/protocol-buffers/docs/downloads).
+Download protocol buffer. Protocol buffer libs can be downloaded [here](https://github.com/google/protobuf/archive/v2.5.0.tar.gz).
 
 Check if g++ compiler is installed on box. Protocol buffer needs g++ compiler to be present on your box before it can be builded. This is a crisp post on how to install g++ compiler on your box. 
 
