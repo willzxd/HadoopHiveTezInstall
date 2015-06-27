@@ -286,7 +286,7 @@ Tez need Protocol Buffers 2.5.0 and Maven 3 or later.
 
 ###Installation of Protocol Buffers 2.5.0
 
-Download protocol buffer. Protocol buffer libs can be downloaded [here](https://github.com/google/protobuf/archive/v2.5.0.tar.gz).
+Download protocol buffer. Protocol buffer libs can be downloaded [here](https//protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz).
 
 Check if g++ compiler is installed on box. Protocol buffer needs g++ compiler to be present on your box before it can be builded. This is a crisp post on how to install g++ compiler on your box. 
 
