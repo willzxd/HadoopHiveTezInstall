@@ -28,7 +28,7 @@ $ sudo mkdir /home/hadoop
 $ sudo chown hadoop /home/hadoop
 $ sudo adduser hadoop sudo
 ```
-- Install JAVA SDK 1.7 or later and set up JAVA_HOME in bashrc file.
+- Install JAVA SDK 1.7 or later and set up JAVA_HOME in bashrc file. Instruction is [here](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
 - Install Maven 3 or later
 - Install Protocol Buffers 2.5.0 or later
 
@@ -41,6 +41,9 @@ You can also refer the official instrucion [here](http://hadoop.apache.org/docs/
 
 Download Hadoop 2.6.0 from [the official website](http://apache.mirrors.pair.com/hadoop/common/hadoop-2.6.0/). 
 If you use a 64-bit OS, please download the source code tarball. Follow the instruction [here](https://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-common/NativeLibraries.html) to complie it. 
+
+You need to install protobuf 2.5.0, CMake and etc.
+
 You can find your newly-built Hadoop here:
  ```$ hadoop-dist/taget/hadoop-2.6.0```
 
