@@ -466,7 +466,8 @@ You can manage Tomact from:
 ```
 http://localhost:8080/
 ```
-
+![Image of tezUI running](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/tezUI.png)
+![Image of tezUIGraphView running](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/tezUIGraphView.png)
 ##<a name="9"/> An example of bashrc file
 ```
 # Java
