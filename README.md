@@ -664,5 +664,6 @@ Modify hive-site.xml in `$HIVE_HOME/conf` to enable the vectorization :
  When use MapReduce framework, it will take a much longer time. The 6th record in the picture shows the result. It tooks 65.2135min to run all the queries under hive-mr mode. 
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/MySQLTables.png)
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/old_cluster_metrics_table.png)
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/cluster_metrics.png)
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/cluster_metrics_availableMB.png)
