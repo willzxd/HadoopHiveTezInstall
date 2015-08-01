@@ -708,7 +708,9 @@ In the cluster_metrics table, you can find all the changes about cluster.
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/cluster_metrics.png)
 Metrics of cluster includes:
 
-|id | string  |The application| id|
+|Item |Data Type | Description |
+|-----|-----|--------|
+|id | string  |The application id|
 |user | string|  The user who started the application|
 |name  |string  |The application name|
 Application Type  string  The application type
