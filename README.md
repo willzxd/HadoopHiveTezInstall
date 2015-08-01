@@ -676,6 +676,7 @@ In the applications_metrics table, it will record a whole pic of applications th
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applications_metrics.png)
 application metrics includes:
+
 |Item |Data Type | Description |
 |-----|-----|--------|
 |id | string  |The application id|
@@ -700,6 +701,8 @@ application metrics includes:
 |runningContainers  | int  | The number of containers currently running for the application|
 |memorySeconds  | long | The amount of memory the application has allocated (megabyte-seconds)|
 |vcoreSeconds  |long | The amount of CPU resources the application has allocated (virtual core-seconds) |
+
+
 It is easy to use the data. For example, we can query like this:
 ```
 mysql> select * from applications_metrics where AppId = 'application_1438376023026_0001' and MetricsName = 'runningContainers';
