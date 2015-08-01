@@ -505,7 +505,12 @@ export CATALINA_HOME=/usr/local/apache-tomcat-8.0.23
 
 ##<a name="7"/>Using BigFrame
 
-[BigFrame 'thoth'](https://github.com/bigframeteam/BigFrame/tree/thoth) is a benchmark generator, which captures your requirement by the 3V's, namely, Volume, Variety and Velocity emphasized in the Big Data environment. Given the benchmark specification you provided, it will generate
+[BigFrame 'thoth'](https://github.com/bigframeteam/BigFrame/tree/thoth) BigFrame is a benchmark generator for big data analytics, which means that it can instantiate different kinds of benchmarks. Unlike the exsiting benchmarks, e.g TPCDS, HiveBench, etc. which are either micro-benchmarks or benchmarks in very specific domains, making them not fit into the big data enviroment taday, BigFrame can instead generate the bechmark tailored to a specific set of data and workload requirements.
+
+For example, some enterprises may be grappling with increasing data volumes; with the variety and velocity of their data not being pressing concerns. Some other enterprises may be interested in benchmarking systems that can handle larger volumes and variety of data; but with the volume of unstructured data dominating that of the structured data by orders of magnitude. A third category of enterprises may be interested in understanding reference architectures for data analytics applications that need to deal with large rates of streaming data (i.e., large velocity of data).
+
+BigFrame captures your requirement by the 3V's, namely, Volume, Variety and Velocity emphasized in the Big Data environment. Given the benchmark specification you provided, it will generate
+
 * The set of data for initial load (with data loading utility)
 * The refresh pattern for each data set (with refresh driver)
 * The query stream (with query implementation and driver to run on different systems)
@@ -611,7 +616,7 @@ You need to edit the `conf/thoth-config.sh` to set the following variables:
     METADATA_DB_USERNAME: The username that can write to the database you use.
     METADATA_DB_PASSWORD: The password of the username
 
-You need to create the corresponding database in MySQL.
+You need to create the database with the same name in MySQL.
 
 You may need to remove hsqldb-2.0.0.jar from your hadoop installation directory.
 
@@ -662,6 +667,45 @@ Modify hive-site.xml in `$HIVE_HOME/conf` to enable the vectorization :
  This results are 5.3 min and 5.5 min, which are a bit better. If we use a truely distributed cluster, the results should be more obvious.
 
  When use MapReduce framework, it will take a much longer time. The 6th record in the picture shows the result. It tooks 65.2135min to run all the queries under hive-mr mode. 
+
+Before the workflows runs, BigFrame starts the Yarn listener that can record all the yarn metrics and store the records in MySql. The Yarn listener will automatically query the Yarn server by ResourceManager REST API and Nodemanager REST API. It consists by four listeners running seprately. They constantly (every 250ms or so) query for cluster metrics, scheduler metrics, application metrics and applications and containers metrics of every node. When certain metrics is changing, BigFrame will record the corresponding information with a timestamp to MySql. For example, the state of a application changes from RUNNING to FINISHED. The address of Yarn server can be changed in `resource/conf.properties`.
+
+The tables of Yarn metrics are applications_metrics, cluster_metrics, scheduler_metrics, nodes_apps_metrics and nodes_containers_metrics.
+
+In the applications_metrics, it will record a whole pic of applications that are running or has finished. In every row, it will store the application ID, the metrics name, recording time and the value. 
+
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applications_metrics.png)
+application metrics includes:
+```
+finishedTime
+amContainerLogs
+trackingUI
+state
+user
+id
+clusterId
+finalStatus
+amHostHttpAddress
+progress
+name
+startedTime
+elapsedTime
+diagnostics
+trackingURL
+queue
+allocatedMB
+allocatedVCores
+runningContainers
+```
+It is easy to use the data. For example, we can query like this:
+```
+mysql> select * from applications_metrics where AppId = 'application_1438376023026_0001' and MetricsName = 'runningContainers';
+```
+Then we get a whole picture of the number of running containers of application_1438376023026_0001.
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applicationsRunningContainers.png)
+
+
+
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/MySQLTables.png)
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/old_cluster_metrics_table.png)
