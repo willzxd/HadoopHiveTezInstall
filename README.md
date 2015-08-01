@@ -676,27 +676,30 @@ In the applications_metrics table, it will record a whole pic of applications th
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applications_metrics.png)
 application metrics includes:
-```
-finishedTime
-amContainerLogs
-trackingUI
-state
-user
-id
-clusterId
-finalStatus
-amHostHttpAddress
-progress
-name
-startedTime
-elapsedTime
-diagnostics
-trackingURL
-queue
-allocatedMB
-allocatedVCores
-runningContainers
-```
+|Item |Data Type | Description |
+|-----|-----|--------|
+|id | string  |The application id|
+|user | string|  The user who started the application|
+|name  |string  |The application name|
+|Application Type|  string  The application type|
+|queue  | string | The queue the application was submitted to|
+|state  | string | The application state according to the ResourceManager - valid values are members of the YarnApplicationState enum: NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED|
+|finalStatus  | string | The final status of the application if finished - reported by the application itself - valid values are: UNDEFINED, SUCCEEDED, FAILED, KILLED|
+|progress | float  | The progress of the application as a percent|
+|trackingUI | string  |Where the tracking url is currently pointing - History (for history server) or ApplicationMaster|
+|trackingUrl  | string | The web URL that can be used to track the application|
+|diagnostics  | string | Detailed diagnostics information|
+|clusterId  | long  |The cluster id|
+|startedTime  | long | The time in which application started (in ms since epoch)|
+|finishedTime  |long | The time in which the application finished (in ms since epoch)|
+|elapsedTime   |long  |The elapsed time since the application started (in ms)|
+|amContainerLogs  | string  The URL of the application master container logs|
+|amHostHttpAddress  | string  The nodes http address of the application master|
+|allocatedMB  | int  | The sum of memory in MB allocated to the application’s running containers|
+|allocatedVCores  | int   |The sum of virtual cores allocated to the application’s running containers|
+|runningContainers  | int  | The number of containers currently running for the application|
+|memorySeconds  | long | The amount of memory the application has allocated (megabyte-seconds)|
+|vcoreSeconds  |long | The amount of CPU resources the application has allocated (virtual core-seconds) |
 It is easy to use the data. For example, we can query like this:
 ```
 mysql> select * from applications_metrics where AppId = 'application_1438376023026_0001' and MetricsName = 'runningContainers';
@@ -708,32 +711,7 @@ In the cluster_metrics table, you can find all the changes about cluster.
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/cluster_metrics.png)
 Metrics of cluster includes:
 
-|Item |Data Type | Description |
-|-----|-----|--------|
-|id | string  |The application id|
-|user | string|  The user who started the application|
-|name  |string  |The application name|
-Application Type  string  The application type
-queue   string  The queue the application was submitted to
-state   string  The application state according to the ResourceManager - valid values are members of the YarnApplicationState enum: NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED
-finalStatus   string  The final status of the application if finished - reported by the application itself - valid values are: UNDEFINED, SUCCEEDED, FAILED, KILLED
-progress  float   The progress of the application as a percent
-trackingUI  string  Where the tracking url is currently pointing - History (for history server) or ApplicationMaster
-trackingUrl   string  The web URL that can be used to track the application
-diagnostics   string  Detailed diagnostics information
-clusterId   long  The cluster id
-startedTime   long  The time in which application started (in ms since epoch)
-finishedTime  long  The time in which the application finished (in ms since epoch)
-elapsedTime   long  The elapsed time since the application started (in ms)
-amContainerLogs   string  The URL of the application master container logs
-amHostHttpAddress   string  The nodes http address of the application master
-allocatedMB   int   The sum of memory in MB allocated to the application’s running containers
-allocatedVCores   int   The sum of virtual cores allocated to the application’s running containers
-runningContainers   int   The number of containers currently running for the application
-memorySeconds   long  The amount of memory the application has allocated (megabyte-seconds)
-vcoreSeconds  long  The amount of CPU resources the application has allocated (virtual core-seconds) 
 ```
-
 appsSubmitted
 appsCompleted
 appsPending
