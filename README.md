@@ -672,7 +672,7 @@ Before the workflows runs, BigFrame starts the Yarn listener that can record all
 
 The tables of Yarn metrics are applications_metrics, cluster_metrics, scheduler_metrics, nodes_apps_metrics and nodes_containers_metrics.
 
-In the applications_metrics, it will record a whole pic of applications that are running or has finished. In every row, it will store the application ID, the metrics name, recording time and the value. 
+In the applications_metrics table, it will record a whole pic of applications that are running or has finished. In every row, it will store the application ID, the metrics name, recording time and the value. 
 
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applications_metrics.png)
 application metrics includes:
@@ -704,10 +704,84 @@ mysql> select * from applications_metrics where AppId = 'application_14383760230
 Then we get a whole picture of the number of running containers of application_1438376023026_0001.
 ![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/applicationsRunningContainers.png)
 
+In the cluster_metrics table, you can find all the changes about cluster.
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/cluster_metrics.png)
+Metrics of cluster includes:
+```
+appsSubmitted
+appsCompleted
+appsPending
+appsRunning
+appsFailed
+appsKilled
+reservedMB
+availableMB
+allocatedMB
+totalMB
+reservedVirtualCores
+availableVirtualCores
+allocatedVirtualCores
+totalVirtualCores
+containersAllocated
+containersReserved
+containersPending
+totalNodes
+activeNodes
+lostNodes
+unhealthyNodes 
+decommissionedNodes
+rebootedNodes
+```
+In the scheduler_metrics table, you can find all the changes about cluster.
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/scheduler_metrics.png)
+Metrics of scheduler includes:
+```
+capacity
+usedCapacity
+maxCapacity
+absoluteCapacity
+absoluteMaxCapacity
+absoluteUsedCapacity
+numApplications
+usedResources
+queueName
+state
+queues
+resourcesUsed
+type
+numActiveApplications
+numPendingApplications
+numContainers
+maxApplications
+maxApplicationsPerUser
+maxActiveApplications
+maxActiveApplicationsPerUser
+userLimit
+userLimitFactor
+users
+```
 
-
-
-![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/MySQLTables.png)
-![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/old_cluster_metrics_table.png)
-![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/cluster_metrics.png)
-![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/cluster_metrics_availableMB.png)
+In the nodes_apps_metrics table, you can find which app is running on which nodes and which containers used by certain app.
+Since we only have one node, the talbe looks like following.
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/nodes_apps_metrics.png)
+Metrics of applications in nodes includes:
+```
+id
+user
+state
+containerids
+```
+In the nodes_apps_metrics table, you can get changes of all containers in every node.
+Since we only have one node, the talbe looks like following.
+![Image of result records in MySQL](https://github.com/willzxd/HadoopHiveTezInstall/blob/master/imgs/nodes_containers_metrics.png)
+Metrics of containers in nodes includes:
+```
+id
+state
+nodeId
+containerLogsLink
+exitCode
+diagnostics
+totalMemoryNeededMB
+totalVCoresNeeded
+```
