@@ -694,8 +694,8 @@ application metrics includes:
 |startedTime  | long | The time in which application started (in ms since epoch)|
 |finishedTime  |long | The time in which the application finished (in ms since epoch)|
 |elapsedTime   |long  |The elapsed time since the application started (in ms)|
-|amContainerLogs  | string  The URL of the application master container logs|
-|amHostHttpAddress  | string  The nodes http address of the application master|
+|amContainerLogs  | string | The URL of the application master container logs|
+|amHostHttpAddress  | string  |The nodes http address of the application master|
 |allocatedMB  | int  | The sum of memory in MB allocated to the application’s running containers|
 |allocatedVCores  | int   |The sum of virtual cores allocated to the application’s running containers|
 |runningContainers  | int  | The number of containers currently running for the application|
