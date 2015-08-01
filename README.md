@@ -682,7 +682,7 @@ application metrics includes:
 |id | string  |The application id|
 |user | string|  The user who started the application|
 |name  |string  |The application name|
-|Application Type|  string  The application type|
+|Application Type|  string  |The application type|
 |queue  | string | The queue the application was submitted to|
 |state  | string | The application state according to the ResourceManager - valid values are members of the YarnApplicationState enum: NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED|
 |finalStatus  | string | The final status of the application if finished - reported by the application itself - valid values are: UNDEFINED, SUCCEEDED, FAILED, KILLED|
